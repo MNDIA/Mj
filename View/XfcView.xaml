@@ -1,0 +1,64 @@
+﻿<Window x:Class="Mj.View.XfcView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mj.View" xmlns:viewmodel="clr-namespace:Mj.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:XfcViewModel}"
+        mc:Ignorable="d" Name="xfcwindow" UseLayoutRounding="True"
+        Title="小电视" Height="221" Width="200" MinHeight="57" MinWidth="50" MaxHeight="10000" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize" AllowsTransparency="True" Icon="../Assets/logo128.ico" FontWeight="Heavy" Background="{x:Null}" Topmost="True">
+    <Window.Resources>
+        <ContextMenu x:Key="ContextMenu">
+            <MenuItem Click="Bs" Header="暂停/启用PING"/>
+            <MenuItem Click="PING" Header="自定义PING"/>
+            <Separator></Separator>
+            <MenuItem Click="Beng" Header="给爷蹦！"/>
+            <MenuItem Click="ZidingyiBig" Header="自定义大小"/>
+            <MenuItem Click="Close" Header="关闭"/>
+        </ContextMenu>
+    </Window.Resources>
+    <Viewbox Stretch="Fill">
+        <Canvas Height="{c:Binding Path=ActualHeight/MaxHeight*10000, ElementName=xfcwindow}" Width="{c:Binding Path=ActualWidth/MaxHeight*10000, ElementName=xfcwindow}">
+            <Grid  Height="{c:Binding Path=ActualHeight/MaxHeight*10000, ElementName=xfcwindow}" Width="{c:Binding Path=ActualWidth/MaxHeight*10000, ElementName=xfcwindow}">
+                <Grid ContextMenu="{StaticResource ContextMenu}" MouseLeftButtonDown="XfcMove">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="13*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="105*"/>
+                                <ColumnDefinition Width="170*"/>
+                                <ColumnDefinition Width="95*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Image Visibility="{Binding MSseeback}" Source="{Binding MSpng}"/>
+                                <TextBlock Visibility="{Binding MSsee}" Text="{Binding MStxt}" Foreground="{Binding MScolor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal" FontStyle="Normal" FontWeight="{Binding MSFont}" FontFamily="../Assets/#Bahnschrift" FontSize="{Binding Ziti1}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Name="biggrid" Width="200" HorizontalAlignment="Left" MaxHeight="41" Visibility="Hidden">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Slider Name="Big" Value="{Binding Zidingyibig}" Maximum="1" TickFrequency="0.05" Minimum="0.05" IsSnapToTickEnabled="False" IsMoveToPointEnabled="True" TickPlacement="Both" IsSelectionRangeEnabled="False" ValueChanged="Yingyongbig"/>
+
+                            <TextBox Text="{Binding ElementName=Big, Path=Value, Mode=TwoWay}" Foreground="#183139" Background="#99FFFFFF" BorderBrush="{x:Null}" BorderThickness="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Button Foreground="#183139" Background="#99dfdfdf" BorderBrush="#99dfdfdf" Content="重制" Click="Chongzhibig" FontSize="8" HorizontalAlignment="Left"  VerticalAlignment="Bottom"  Grid.Row="1"/>
+                            <Button Foreground="#183139" Background="#99dfdfdf" BorderBrush="#99dfdfdf" Content="关闭" Click="Closebiggrid" FontSize="8" HorizontalAlignment="Right"  VerticalAlignment="Bottom"  Grid.Row="1"/>
+                        </Grid>
+                        <Grid Name="ipgrid" Width="200" HorizontalAlignment="Left" Height="41" Visibility="Hidden">
+                            <TextBox Text="{Binding IP}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="172" Grid.Column="1" FontWeight="Heavy" FontSize="26" Foreground="Black" BorderBrush="#99dfdfdf" BorderThickness="2" Background="#99ffffff"/>
+                            <TextBlock Text="{Binding IPtishi}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="172" Grid.Column="1" FontSize="12" Foreground="Red" Background="{x:Null}"/>
+                            <Button Content="确定" Foreground="#183139" Background="#99dfdfdf" BorderBrush="#99dfdfdf" HorizontalAlignment="Right" Click="Closeipgrid"/>
+                        </Grid>
+                    </Grid>
+                    <Image Name="pinggif" gif:ImageBehavior.AnimationCompleted="Image_AnimationCompleted" gif:ImageBehavior.RepeatBehavior="{Binding GIFmany}" gif:ImageBehavior.AnimatedSource="../Assets/ping.gif"/>
+                </Grid>
+            </Grid>
+        </Canvas>
+    </Viewbox>
+</Window>

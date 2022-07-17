@@ -1,0 +1,213 @@
+﻿<UserControl x:Class="Mj.View.Page5View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mj.View"
+             mc:Ignorable="d" UseLayoutRounding="True"
+             d:DesignHeight="422" d:DesignWidth="705">
+    <UserControl.Resources>
+        <ControlTemplate TargetType="Button" x:Key="MorenButtonTemplate">
+            <Border CornerRadius="2" Background="#00a8f3">
+                <Grid>
+                    <Border Background="Transparent" CornerRadius="2" Name="back">
+                        <ContentControl Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#55FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate TargetType="Button" x:Key="YESButtonTemplate">
+            <Border CornerRadius="0,5,5,0" Background="#00a8f3">
+                <Grid>
+                    <Border Background="Transparent" CornerRadius="2" Name="back">
+                        <ContentControl Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#55FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate TargetType="Button" x:Key="YES2ButtonTemplate">
+            <Border CornerRadius="0,5,5,0" Background="#00a8f3">
+                <Grid>
+                    <Border Background="Transparent" CornerRadius="2" Name="back">
+                        <ContentControl Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#55FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="CheckBox" x:Key="CheckButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Height="28" Width="56">
+                    <Border Name="back" Background="#dfdfdf" Height="20" Width="44" CornerRadius="10" BorderBrush="{x:Null}" BorderThickness="0"/>
+                    <Border Name="back2" Background="Transparent" Height="20" Width="44" CornerRadius="10" BorderBrush="{x:Null}" BorderThickness="0"/>
+                    <Ellipse Name="point" HorizontalAlignment="Left" Height="28" Width="28" Fill="#00a8f3" Stroke="{x:Null}" StrokeThickness="0">
+                        <Ellipse.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#ffd7d7d7"/>
+                        </Ellipse.Effect>
+                        <Ellipse.RenderTransform>
+                            <TranslateTransform X="0" x:Name="tp"/>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </Grid>
+                <ContentControl Margin="5,0,0,0" Grid.Column="1" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Fill" TargetName="point" Value="#22b4f5"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Fill" TargetName="point" Value="#ededed"/>
+                    <Setter Property="Background" TargetName="back2" Value="#11000000"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Fill" TargetName="point" Value="#00a0f0"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Background" TargetName="back" Value="#ffe638"/>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" To="0"
+                             Storyboard.TargetName="tp" Storyboard.TargetProperty="X"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" To="24"
+                             Storyboard.TargetName="tp" Storyboard.TargetProperty="X"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Image x:Name="A2" Source="../Assets/A2.png" MinHeight="425"/>
+        <Grid MinHeight="321" Height="{Binding Path=ActualHeight, ElementName=A2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56*"/>
+                <ColumnDefinition Width="44*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+                <Image Name="Shezhidonghua" Visibility="Hidden" Grid.Row="1" gif:ImageBehavior.AnimatedSource="../Assets/Loading.gif"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="230*"/>
+                    <RowDefinition Height="114*"/>
+                    <RowDefinition Height="114*"/>
+                    <RowDefinition Height="114*"/>
+                    <RowDefinition Height="114*"/>
+                    <RowDefinition Height="114*"/>
+                    <RowDefinition Height="207*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Text="游戏资源目录" FontSize="20" FontWeight="Heavy" Foreground="#00a8f4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Button Grid.Column="2" Name="isomoren" Template="{StaticResource MorenButtonTemplate}" Content="恢复默认位" FontSize="14" FontWeight="Light" Foreground="#FFFFFF" Width="110" Height="20" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ISOMoren"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#66FFFFFF" CornerRadius="5" BorderThickness="1" BorderBrush="#00a8f3" Grid.Column="1" Height="35" Width="286" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBox Name="lujingiso" FontWeight="Light" Foreground="Black" BorderThickness="0" Margin="2,5,0,5" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" PreviewMouseLeftButtonDown="ISOLiulan"/>
+                    </Border>
+                    <Button Content="确定" Foreground="White" FontWeight="Light" Grid.Column="1" Template="{StaticResource YESButtonTemplate}" Height="35" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Click="ISOYES"/>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Text="模拟器目录" FontSize="20" FontWeight="Heavy" Foreground="#00a8f4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Button Grid.Column="2" Name="pspmoren" Template="{StaticResource MorenButtonTemplate}" Content="恢复默认位" FontSize="14" FontWeight="Light" Foreground="#FFFFFF" Width="110" Height="20" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="PSPMoren"/>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#66FFFFFF" CornerRadius="5" BorderThickness="1" BorderBrush="#00a8f3" Grid.Column="1" Height="35" Width="286" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBox Name="lujingpsp" FontWeight="Light" Foreground="Black" BorderThickness="0" Margin="2,5,0,5" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" PreviewMouseLeftButtonDown="PSPLiulan"/>
+                    </Border>
+                    <Button Content="确定" Foreground="White" FontWeight="Light" Grid.Column="1" Template="{StaticResource YES2ButtonTemplate}" Height="35" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Click="PSPYES"/>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Text="联机模块文件" FontSize="20" FontWeight="Heavy" Foreground="#00a8f4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Button Grid.Column="2" Name="fcnmoren" Template="{StaticResource MorenButtonTemplate}" Content="恢复默认位" FontSize="14" FontWeight="Light" Foreground="#FFFFFF" Width="110" Height="20" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="FCNMoren"/>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#66FFFFFF" CornerRadius="5" BorderThickness="1" BorderBrush="#00a8f3" Grid.Column="1" Height="35" Width="286" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBox Name="lujingfcn" FontWeight="Light" Foreground="Black" BorderThickness="0" Margin="2,5,0,5" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" PreviewMouseLeftButtonDown="FCNLiulan"/>
+                    </Border>
+                    <Button Content="确定" Foreground="White" FontWeight="Light" Grid.Column="1" Template="{StaticResource YES2ButtonTemplate}" Height="35" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Click="FCNYES"/>
+                </Grid>
+               
+                
+                
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

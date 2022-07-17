@@ -1,0 +1,176 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>assets\logo128.ico</ApplicationIcon>
+    <Company>魔禁多人联动委员会</Company>
+    <Product>魔禁启动器</Product>
+    <PackageId>233</PackageId>
+    <Authors>SCH</Authors>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>魔法禁书目录</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <Platforms>AnyCPU;x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <IsPublishable>True</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\1.png" />
+    <None Remove="Assets\A.png" />
+    <None Remove="Assets\A1.png" />
+    <None Remove="Assets\A2.png" />
+    <None Remove="Assets\anjian1.png" />
+    <None Remove="Assets\anjian2.png" />
+    <None Remove="Assets\B.png" />
+    <None Remove="Assets\B1.png" />
+    <None Remove="Assets\B2.png" />
+    <None Remove="Assets\back.png" />
+    <None Remove="Assets\bahnschrift.ttf" />
+    <None Remove="Assets\blood.png" />
+    <None Remove="Assets\C.png" />
+    <None Remove="Assets\C1.png" />
+    <None Remove="Assets\C2.png" />
+    <None Remove="Assets\ccz.gif" />
+    <None Remove="Assets\close.png" />
+    <None Remove="Assets\D.png" />
+    <None Remove="Assets\D1.png" />
+    <None Remove="Assets\download.png" />
+    <None Remove="Assets\FCN_3.9.exe" />
+    <None Remove="Assets\fight.png" />
+    <None Remove="Assets\first.png" />
+    <None Remove="Assets\greenping.png" />
+    <None Remove="Assets\ico.ico" />
+    <None Remove="Assets\iconfont.ttf" />
+    <None Remove="Assets\Inkfree.ttf" />
+    <None Remove="Assets\inputHandle.png" />
+    <None Remove="Assets\inputhandleexp.png" />
+    <None Remove="Assets\inputkeyboard.png" />
+    <None Remove="Assets\inputkeyboardexp.png" />
+    <None Remove="Assets\ip-kong.png" />
+    <None Remove="Assets\ip.png" />
+    <None Remove="Assets\isodir.png" />
+    <None Remove="Assets\Loading.gif" />
+    <None Remove="Assets\loadingbig.gif" />
+    <None Remove="Assets\logo.png" />
+    <None Remove="Assets\logo128.ico" />
+    <None Remove="Assets\logo128.png" />
+    <None Remove="Assets\logobig.png" />
+    <None Remove="Assets\logoccz.ico" />
+    <None Remove="Assets\minimize.png" />
+    <None Remove="Assets\msyh.ttc" />
+    <None Remove="Assets\msyhbd.ttc" />
+    <None Remove="Assets\msyhl.ttc" />
+    <None Remove="Assets\noping.png" />
+    <None Remove="Assets\pht.ttf" />
+    <None Remove="Assets\PhtL.ttf" />
+    <None Remove="Assets\PhtM.ttf" />
+    <None Remove="Assets\ping-close.png" />
+    <None Remove="Assets\ping.gif" />
+    <None Remove="Assets\qiehuancaizhi.png" />
+    <None Remove="Assets\redping.png" />
+    <None Remove="Assets\search1.png" />
+    <None Remove="Assets\sets.png" />
+    <None Remove="Assets\showfiles.png" />
+    <None Remove="Assets\texdir.png" />
+    <None Remove="Assets\tuola.png" />
+    <None Remove="Assets\update.png" />
+    <None Remove="Assets\yellowping.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
+    <PackageReference Include="CalcBinding" Version="2.5.2" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="101.0.180" />
+    <PackageReference Include="HandyControl" Version="3.3.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\A1.png" />
+    <Resource Include="Assets\A2.png" />
+    <Resource Include="Assets\anjian1.png" />
+    <Resource Include="Assets\anjian2.png" />
+    <Resource Include="Assets\B1.png" />
+    <Resource Include="Assets\B2.png" />
+    <Resource Include="Assets\back.png" />
+    <Resource Include="Assets\bahnschrift.ttf" />
+    <Resource Include="Assets\blood.png" />
+    <Resource Include="Assets\C1.png" />
+    <Resource Include="Assets\C2.png" />
+    <Resource Include="Assets\ccz.gif" />
+    <Resource Include="Assets\close.png" />
+    <Resource Include="Assets\D1.png" />
+    <Resource Include="Assets\download.png" />
+    <Resource Include="Assets\fight.png" />
+    <Resource Include="Assets\greenping.png" />
+    <Resource Include="Assets\ico.ico" />
+    <Resource Include="Assets\iconfont.ttf" />
+    <Resource Include="Assets\Inkfree.ttf" />
+    <Resource Include="Assets\ip-kong.png" />
+    <Resource Include="Assets\ip.png" />
+    <Resource Include="Assets\isodir.png" />
+    <Resource Include="Assets\inputkeyboard.png" />
+    <Resource Include="Assets\inputhandle.png" />
+    <Resource Include="Assets\inputkeyboardexp.png" />
+    <Resource Include="Assets\inputhandleexp.png" />
+    <Resource Include="Assets\Loading.gif" />
+    <Resource Include="Assets\loadingbig.gif" />
+    <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\logo128.ico" />
+    <Resource Include="Assets\logo128.png" />
+    <Resource Include="Assets\logoccz.ico" />
+    <Resource Include="Assets\minimize.png" />
+    <Resource Include="Assets\noping.png" />
+    <Resource Include="Assets\PhtL.ttf" />
+    <Resource Include="Assets\PhtM.ttf" />
+    <Resource Include="Assets\ping-close.png" />
+    <Resource Include="Assets\ping.gif" />
+    <Resource Include="Assets\qiehuancaizhi.png" />
+    <Resource Include="Assets\redping.png" />
+    <Resource Include="Assets\search1.png" />
+    <Resource Include="Assets\sets.png" />
+    <Resource Include="Assets\showfiles.png" />
+    <Resource Include="Assets\texdir.png" />
+    <Resource Include="Assets\tuola.png" />
+    <Resource Include="Assets\update.png" />
+    <Resource Include="Assets\yellowping.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
