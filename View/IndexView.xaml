@@ -773,7 +773,8 @@
                             <hc:NotifyIcon.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Command="{Binding XFButtonCommand}" Header="显示/启用/禁用悬浮窗"/>
-                                    <MenuItem Command="{Binding PlayButtonCommand}" CommandParameter="{Binding ElementName=window}" Header="启动游戏"/>
+                                    <MenuItem Command="{Binding XFLocationCommand}" Header="悬浮窗位置重置"/>
+                                    <MenuItem Command="{Binding PlayButtonCommand}" CommandParameter="{Binding ElementName=window}" Header="启动游戏/停止选服"/>
                                     <MenuItem Click="Jinyongtuopan" Header="禁用托盘"/>
                                     <Separator></Separator>
                                     <MenuItem Header="退出" Click="APPClose"/>

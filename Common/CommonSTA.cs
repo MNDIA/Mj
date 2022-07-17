@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Mj.Common
 {
-    public static class CommonSTA // static 不是必须
+    public static class CommonSTA 
     {
         public static double dpi = 1;
         public static byte Doping = 1;
@@ -27,6 +27,7 @@ namespace Mj.Common
         public static string PSPName = @"";
         public static System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
         public static System.Net.NetworkInformation.Ping ping2 = new System.Net.NetworkInformation.Ping();
+        public static System.Net.NetworkInformation.Ping ping3 = new System.Net.NetworkInformation.Ping();
     }
 
 }

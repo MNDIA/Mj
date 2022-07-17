@@ -3,6 +3,7 @@ using Mj.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -17,7 +18,24 @@ namespace Mj.ViewModel
         public static IniBase ini = new IniBase(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\IndexOfMagic\ppsspp\set");//启用 ini
         public IniBase ini5 = new IniBase(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\IndexOfMagic\unreal5\usebeta");//启用 ini
         public IniBase psp = new IniBase(ini.IniReadValue("setgame", "PPSSPP路径") + @"memstick\PSP\SYSTEM\ppsspp.ini");//启用 ini
-
+        #region DPI所需接口
+        [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "GetDeviceCaps", SetLastError = true)]
+        public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+        enum DeviceCap
+        {
+            VERTRES = 10,
+            PHYSICALWIDTH = 110,
+            SCALINGFACTORX = 114,
+            DESKTOPVERTRES = 117,
+        }
+        public static double GetScreenScalingFactor()
+        {
+            var g = Graphics.FromHwnd(IntPtr.Zero);
+            IntPtr desktop = g.GetHdc();
+            var physicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
+            return physicalScreenHeight;
+        }
+        #endregion
 
 
         //[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern int MessageBoxTimeoutA(IntPtr hWnd, string msg, string Caps, int type, int Id, int time); //引用DLL
@@ -30,6 +48,7 @@ namespace Mj.ViewModel
         public CommandBase CloseWindowCommand { get; set; }
         public CommandBase PINGButtonCommand { get; set; }
         public CommandBase XFButtonCommand { get; set; }
+        public CommandBase XFLocationCommand { get; set; }
         public CommandBase NavChangedCommand { get; set; }
         public CommandBase SetGridChangeCommand { get; set; }
         public CommandBase PlayButtonCommand { get; set; }
@@ -50,6 +69,9 @@ namespace Mj.ViewModel
         //————————————————————————————————————————————————————————————————
         public IndexViewModel()
         {
+            #region 获取DPI(其他窗口也用到
+            Common.CommonSTA.dpi = double.Parse(GetScreenScalingFactor().ToString(), 0) / double.Parse(SystemParameters.PrimaryScreenHeight.ToString(), 0);
+            #endregion
             IndexModel = new IndexModel();
             //————————————————————————————————————————————————————————————
             //初始化封装
@@ -75,9 +97,9 @@ namespace Mj.ViewModel
                 IndexModel.Yuanjiao4 = "10,0,0,0";
             }//圆角
             #region 主题
-            if (ini.IniReadValue("window", "主题") == "幻影白")
+            if ((ViewModel.IndexViewModel.ini.IniReadValue("window", "主题") == "幻影白") || (ViewModel.IndexViewModel.ini.IniReadValue("window", "主题") == ""))
             {
-                ;
+                //默认主题;
             }
             else if (ini.IniReadValue("window", "主题") == "深空灰")
             {
@@ -384,6 +406,20 @@ namespace Mj.ViewModel
             });
             #endregion
             //
+            #region 悬浮窗位置重置XFLocationCommand
+            this.XFLocationCommand = new CommandBase();
+            this.XFLocationCommand.DoExecute = new Action<object>((o) =>
+            {
+                ini.IniWriteValue("xfc", "自定义位置", "0");
+                IndexModel.XfcView.Top = SystemParameters.PrimaryScreenHeight / 2 - 410;
+                IndexModel.XfcView.Left = SystemParameters.PrimaryScreenWidth / 2 + 383;
+            });
+            this.XFLocationCommand.DoCanExecute = new Func<object, bool>((o) =>
+            {
+                return true;
+            });
+            #endregion
+            //
             #region 改变主页NavChangedCommand
             this.NavChangedCommand = new CommandBase();
             this.NavChangedCommand.DoExecute = new Action<object>((o) =>
@@ -556,7 +592,8 @@ namespace Mj.ViewModel
                                     try
                                     {
                                         View.IndexView.mainThreadSynContext.Post(new SendOrPostCallback(s =>
-                                        IndexModel.XfcView.Show()), null);
+                                        IndexModel.XfcView.Show()
+                                        ), null);
                                         CommonSTA.XDS = 1;
                                         CommonSTA.Noping3 = 0;
                                     }
@@ -783,7 +820,7 @@ namespace Mj.ViewModel
                                             #endregion
                                             break;
                                         }
-                                        System.Threading.Thread.Sleep(1000);
+                                        System.Threading.Thread.Sleep(500);
                                     }
                                 }).ContinueWith<int>((t) =>
                                 {

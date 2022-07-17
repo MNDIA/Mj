@@ -22,64 +22,43 @@ namespace Mj.View
     {
         private Common.IniBase ini = new Common.IniBase(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\IndexOfMagic\ppsspp\set");//启用 ini
         public ViewModel.XfcViewModel XfcViewModel = new ViewModel.XfcViewModel();
-        #region DPI
-        [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "GetDeviceCaps", SetLastError = true)]
-        public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
-        enum DeviceCap
-        {
-            VERTRES = 10,
-            PHYSICALWIDTH = 110,
-            SCALINGFACTORX = 114,
-            DESKTOPVERTRES = 117,
-        }
-        public static double GetScreenScalingFactor()
-        {
-            var g = System.Drawing.Graphics.FromHwnd(IntPtr.Zero);
-            IntPtr desktop = g.GetHdc();
-            var physicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
-            return physicalScreenHeight;
-        }
-        #endregion
+     
         public XfcView()
         {
             InitializeComponent();
             this.DataContext = XfcViewModel;
-            //重制悬浮窗位置
-            //ini.IniWriteValue("xfc", "自定义位置", "0");
+           
             
             #region 大小
             if (ini.IniReadValue("xfc", "自定义大小") == "1")
             {
                 XfcViewModel.Zidingyibig = double.Parse(ini.IniReadValue("xfc", "big"));
-                #region DPI禁用
-                if (ini.IniReadValue("window", "DPI") != "1")
-                {
-                    xfcwindow.MaxHeight = 10000 * Common.CommonSTA.dpi;
-                    xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * XfcViewModel.Zidingyibig * Common.CommonSTA.dpi * Common.CommonSTA.dpi) + 5;
-                }
-                else
-                {
-                    xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * XfcViewModel.Zidingyibig) + 5;
-                }
-                #endregion
-                xfcwindow.Width = xfcwindow.Height * 0.904;
+                //xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * Common.CommonSTA.dpi * XfcViewModel.Zidingyibig) + 5;
+
+                //#region DPI禁用
+                //if (ini.IniReadValue("window", "DPI") != "1")
+                //{
+                //    xfcwindow.MaxHeight = 10000 * Common.CommonSTA.dpi;
+                //    xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * XfcViewModel.Zidingyibig * Common.CommonSTA.dpi * Common.CommonSTA.dpi) + 5;
+                //}
+                //else
+                //{
+                //    xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * XfcViewModel.Zidingyibig) + 5;
+                //}
+                //#endregion
             }
-            else
-            {
-                xfcwindow.Height = (SystemParameters.PrimaryScreenHeight * 0.2 * CommonSTA.dpi) + 5;
-            }
-            xfcwindow.Width = xfcwindow.Height * 0.904;
+           
             #endregion
             #region 位置
             if (ini.IniReadValue("xfc", "自定义位置") == "1")
             {
-                xfcwindow.Top = SystemParameters.PrimaryScreenHeight * double.Parse(ini.IniReadValue("xfc", "top"));
-                xfcwindow.Left = SystemParameters.PrimaryScreenWidth * double.Parse(ini.IniReadValue("xfc", "left"));
+                xfcwindow.Top = SystemParameters.PrimaryScreenHeight / 2 + double.Parse(ini.IniReadValue("xfc", "top"));
+                xfcwindow.Left = SystemParameters.PrimaryScreenWidth / 2 + double.Parse(ini.IniReadValue("xfc", "left"));
             }
             else
             {
-                xfcwindow.Top = SystemParameters.PrimaryScreenHeight * 0.12;
-                xfcwindow.Left = SystemParameters.PrimaryScreenWidth * 0.7;
+                xfcwindow.Top = SystemParameters.PrimaryScreenHeight / 2 - 410;
+                xfcwindow.Left = SystemParameters.PrimaryScreenWidth / 2 + 383;
             }
             #endregion
         }
@@ -93,8 +72,8 @@ namespace Mj.View
             if (e.LeftButton == MouseButtonState.Released)
             {
                 ini.IniWriteValue("xfc", "自定义位置", "1");
-                ini.IniWriteValue("xfc", "top", Math.Round(xfcwindow.Top / SystemParameters.PrimaryScreenHeight, 2).ToString());
-                ini.IniWriteValue("xfc", "left", Math.Round(xfcwindow.Left / SystemParameters.PrimaryScreenWidth, 2).ToString());
+                ini.IniWriteValue("xfc", "top", Math.Round((xfcwindow.Top - SystemParameters.PrimaryScreenHeight / 2) , 4).ToString());
+                ini.IniWriteValue("xfc", "left", Math.Round((xfcwindow.Left - SystemParameters.PrimaryScreenWidth / 2), 4).ToString());
             }
         }
         #endregion
@@ -132,7 +111,7 @@ namespace Mj.View
                         }
                         try
                         {
-                            System.Net.NetworkInformation.PingReply pingReply = CommonSTA.ping2.Send(CommonSTA._ip);
+                            System.Net.NetworkInformation.PingReply pingReply = CommonSTA.ping3.Send(CommonSTA._ip);
                             if (pingReply.Status == System.Net.NetworkInformation.IPStatus.Success)
                             {
                                 if (pingReply.RoundtripTime < 45)
@@ -268,14 +247,14 @@ namespace Mj.View
         private void Chongzhibig(object sender, RoutedEventArgs e)
         {
             XfcViewModel.Zidingyibig = 0.2;
-            xfcwindow.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.2) + 5;
+            xfcwindow.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * Common.CommonSTA.dpi * 0.2) + 5;
             xfcwindow.Width = xfcwindow.Height * 0.904;
         } 
         #endregion
         #region 自定义大小应用
         private void Yingyongbig(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            xfcwindow.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * XfcViewModel.Zidingyibig) + 5;
+            xfcwindow.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * Common.CommonSTA.dpi * XfcViewModel.Zidingyibig) + 5;
             xfcwindow.Width = xfcwindow.Height * 0.904;
             if (XfcViewModel.Zidingyibig != 0.2)
             {

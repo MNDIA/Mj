@@ -198,7 +198,7 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <CheckBox Grid.Column="1" Template="{StaticResource CheckButton}" Name="yuanjiao" FontSize="16" Foreground="#008dcc" Content="win11风格 " HorizontalAlignment="Left" VerticalAlignment="Center" Click="Yuanjiao"/>
-                    <CheckBox Grid.Column="2" Template="{StaticResource CheckButton}" Name="dpi" FontSize="16" Foreground="#008dcc" Content="DPI " HorizontalAlignment="Left" VerticalAlignment="Center" Click="DPI"/>
+                    <CheckBox Grid.Column="2" Template="{StaticResource CheckButton}" Name="dpi" FontSize="16" Foreground="#008dcc" Content="DPI " HorizontalAlignment="Left" VerticalAlignment="Center" Click="DPI" IsEnabled="False"/>
                     <!--<CheckBox Grid.Column="2" Template="{StaticResource CheckButton}" Margin="2,0,0,0" IsEnabled="False" Name="jinshouzhi" FontSize="16" Foreground="#008dcc" Content="金手指" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Jinshouzhi"/>-->
                 
                 </Grid>

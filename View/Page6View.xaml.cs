@@ -22,7 +22,7 @@ namespace Mj.View
         {
             InitializeComponent();
             #region 配置文件setgame
-            if (ViewModel.IndexViewModel.ini.IniReadValue("window", "主题") == "幻影白")
+            if ((ViewModel.IndexViewModel.ini.IniReadValue("window", "主题") == "幻影白") || (ViewModel.IndexViewModel.ini.IniReadValue("window", "主题") == "")) 
             {
                 zhuti1.IsChecked = true;
             }

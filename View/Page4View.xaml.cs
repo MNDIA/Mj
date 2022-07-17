@@ -39,6 +39,7 @@ namespace Mj.View
             if (ini.IniReadValue("setgame", "UE5") == "1")
             {
                 ue5play.IsChecked = true;
+                ue5play.IsEnabled = true;
             }
             if (ini.IniReadValue("window", "禁用托盘") == "0")
             {
@@ -104,6 +105,7 @@ namespace Mj.View
             else
             {
                 ini.IniWriteValue("setgame", "UE5", "0");
+                ue5play.IsEnabled = false;
             }
         }
         private void Tuopan(object sender, RoutedEventArgs e)
@@ -198,12 +200,6 @@ namespace Mj.View
                     }
                 }
                 ini.IniWriteValue("window", "Runed", "0");
-                ini.IniWriteValue("window", "ManySame", "0");
-                ini.IniWriteValue("window", "Yuanjiao", "0");
-                ini.IniWriteValue("window", "主题", "幻影白");
-                ini.IniWriteValue("window", "DPI", "0");
-                ini.IniWriteValue("window", "禁用托盘", "0");
-                ini.IniWriteValue("xfc", "big", "0.2");
                 ini.IniWriteValue("setgame", "FCN路径", Environment.CurrentDirectory + @"\FCN.exe");
                 ini.IniWriteValue("setgame", "PPSSPP路径", Environment.CurrentDirectory + @"\");
                 ini.IniWriteValue("setgame", "ISO路径", Environment.CurrentDirectory + @"\memstick\PSP\GAME\");
