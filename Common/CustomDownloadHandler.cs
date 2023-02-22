@@ -66,8 +66,8 @@ namespace Mj.Common
             }
             #region 下载参数
             var endpoint = "oss-cn-beijing.aliyuncs.com";
-            var accessKeyId = "LTAI5t9m218gHa7A9tJX9r3f";
-            var accessKeySecret = "a6GrKKtDxHTYtiTqmXN0crAkmapfX4";
+            var accessKeyId = ;
+            var accessKeySecret = ;
             var bucketName = "textruesdata";
             var objectName = "scattered/" + SuggestedFileName;
             var downloadFilename = Common.CommonSTA.LujingPSP + @"memstick\PSP\TEXTURES\Download\" + SuggestedFileName;
